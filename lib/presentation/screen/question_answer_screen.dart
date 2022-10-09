@@ -16,7 +16,7 @@ class QuestionAndAnswerScreen extends StatelessWidget {
     return BlocConsumer<QuestionCubic, QuestionStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var boardController = PageController();
+
           var cubic = QuestionCubic.get(context);
        return   ConditionalBuilder(condition: cubic.questionModel!.questions!=null,builder: (context) =>    Scaffold(backgroundColor: ColorManager.primary,body: Padding(
             padding: const EdgeInsets.only(top: 50.0),
@@ -43,7 +43,7 @@ class QuestionAndAnswerScreen extends StatelessWidget {
                         text:  'Score :',
                         style: Theme.of(context).textTheme.subtitle1,),
                       TextSpan(
-                        text: '${cubic.questionModel!.questions![0].score}',
+                        text: '${cubic.sum}',
                         style: Theme.of(context).textTheme.subtitle1,)
                     ]),
                   ),
@@ -55,12 +55,13 @@ class QuestionAndAnswerScreen extends StatelessWidget {
 
                  return QuestionItemComponent(question: cubic.questionModel!.questions![index]);
                 }, onPageChanged: (index) {
+                 cubic.clearColor();
                   if (index == cubic.questionModel!.questions!.length - 1) {
                    cubic.changePageView(true);
                   } else {
                     cubic.changePageView(false);
                   }
-                  cubic.answerModel=AnswerModel(answerColor:ColorManager.white ,number: 0);
+
                   print(index);
                 },controller: cubic.boardController,
 

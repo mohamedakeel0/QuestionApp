@@ -16,3 +16,6 @@ class ListDOneState extends QuestionStates{}
 class LastPageViewState extends QuestionStates{}
 class QuestionNumberState extends QuestionStates{}
 class GoNextPageState extends QuestionStates{}
+class SumScoreState extends QuestionStates{}
+class ClearColorState extends QuestionStates{}
+

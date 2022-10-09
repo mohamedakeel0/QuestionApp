@@ -49,13 +49,14 @@ print(Answer[0].answerLetter);
   }
   AnswerModel answerModel=AnswerModel(answerColor:ColorManager.white ,number: 0);
 bool? isSelect;
-  changeColorAnswer(answer,correctAnswer,number,context){
+  changeColorAnswer(answer,correctAnswer,number,context,score){
     print(answer);
     print(correctAnswer);
 if(answer ==correctAnswer){
   answerModel=AnswerModel(answerColor:ColorManager.green ,number: number);
   goNextPage(context);
   changeQuestionNumber();
+  sumScore(score);
   emit(ChangeColorAnswerState());
 }else if(answer !=correctAnswer){
   answerModel=AnswerModel(answerColor:ColorManager.error ,number: number);
@@ -77,19 +78,33 @@ if(answer ==correctAnswer){
   bool islast = false;
 changePageView(last){
   islast = last;
+  answerModel=AnswerModel(answerColor:ColorManager.white ,number: 0);
   emit(LastPageViewState());
 }
   var boardController = PageController();
 goNextPage(context){
   if (islast) {
+    clearColor();
+    islast = false;
     Navigator.pushReplacementNamed(context, Routes.mainRoute);
     emit(GoNextPageState());
   } else {
 
     boardController.nextPage(
-        duration: const Duration(seconds: 6),
+        duration: const Duration(seconds: 30),
         curve: Curves.fastLinearToSlowEaseIn);
+
+
     emit(GoNextPageState());
   }
+}
+int sum=0;
+sumScore(score){
+  sum=score+sum;
+  emit(SumScoreState());
+}
+clearColor(){
+  answerModel=AnswerModel(answerColor:ColorManager.white ,number: 0);
+emit(ClearColorState());
 }
 }
