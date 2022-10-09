@@ -21,7 +21,7 @@ class QuestionItemComponent extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(children: [
               Text(
-                "100 Point",
+                "${question.score} Point",
                 softWrap: true,
                 textAlign: TextAlign.center,
                 style:  Theme.of(context).textTheme.subtitle1,
@@ -41,7 +41,7 @@ class QuestionItemComponent extends StatelessWidget {
         defaultButton(
           background: ColorManager.white,colorBorder: cubic.answerModel.number==1&& cubic.answerModel.number!=null? cubic.answerModel.answerColor!:ColorManager.white,
           function: () {
-            cubic.changeColorAnswer('A', question.correctAnswer,1,context);
+            cubic.changeColorAnswer('A', question.correctAnswer,1,context,question.score);
 
           },
           text: '${question.answers!.a}',height: 40,
@@ -56,7 +56,7 @@ class QuestionItemComponent extends StatelessWidget {
           background: ColorManager.white,colorBorder: cubic.answerModel.number==2&& cubic.answerModel.number!=null? cubic.answerModel.answerColor!:ColorManager.white,
           function: () {
 
-            cubic.changeColorAnswer('B', question.correctAnswer,2,context);
+            cubic.changeColorAnswer('B', question.correctAnswer,2,context,question.score);
 
           },
           text:  '${question.answers!.b}',height: 40,
@@ -70,7 +70,7 @@ class QuestionItemComponent extends StatelessWidget {
         defaultButton(
           background: ColorManager.white,colorBorder: cubic.answerModel.number==3&& cubic.answerModel.number!=null? cubic.answerModel.answerColor!:ColorManager.white,
           function: () {
-            cubic.changeColorAnswer('C', question.correctAnswer,3,context);
+            cubic.changeColorAnswer('C', question.correctAnswer,3,context,question.score);
           },
           text:  '${question.answers!.c}',height: 40,
           shape: true,
@@ -84,7 +84,7 @@ class QuestionItemComponent extends StatelessWidget {
         defaultButton(
           background: ColorManager.white,colorBorder: cubic.answerModel.number==4&& cubic.answerModel.number!=null? cubic.answerModel.answerColor!:ColorManager.white,
           function: () {
-            cubic.changeColorAnswer('C', question.correctAnswer,4,context);
+            cubic.changeColorAnswer('C', question.correctAnswer,4,context,question.score);
           },
           text:  '${question.answers!.d}',height: 40,
           shape: true,
